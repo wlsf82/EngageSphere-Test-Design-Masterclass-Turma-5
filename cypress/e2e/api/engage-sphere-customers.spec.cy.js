@@ -4,6 +4,8 @@ describe('Get Customers', () => {
 
     context('Valid requests', () => {
         it('GET /customers - returns 200 and valid response structure (default parameters)', () => {
+            console.log('API_URL:', process.env.API_URL);
+            console.log('GUI_URL:', process.env.GUI_URL);
             cy.apiGetCustomers({
             }).then((response) => {
                 expect(response.status).to.eq(200);
