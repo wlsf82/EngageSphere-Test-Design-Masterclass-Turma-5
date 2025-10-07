@@ -4,10 +4,14 @@ module.exports = defineConfig({
   e2e: {
     viewportWidth: 1200,
     viewportHeight: 900,
+
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      config.env.GUI_URL = process.env.GUI_URL || config.env.GUI_URL;
+      config.env.API_URL = process.env.API_URL || config.env.API_URL;
+
+      return config;
     },
-  experimentalRunAllSpecs: true,
-  env: { hideXhr: true }
+    experimentalRunAllSpecs: true,
+    env: { hideXhr: true }
   },
 });

@@ -40,7 +40,7 @@ jobs:
 
       # Esperar até que backend e frontend estejam prontos
       - name: Wait for backend and frontend
-        run: npx wait-on http://localhost:3000 http://localhost:3001/api-docs/
+        run: npx wait-on ${{ secrets.GUI_URL }} ${{ secrets.API_URL }}/api-docs
 
   cypress-tests:
     name: Run Cypress Tests
@@ -54,13 +54,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
 
       - name: Install dependencies
         run: npm ci
 
       - name: Run Cypress tests
         run: npx cypress run --spec "cypress/e2e/**/*.cy.js"
+        env:
+          GUI_URL: ${{ secrets.GUI_URL }}
+          API_URL: ${{ secrets.API_URL }}
 
       - name: Upload Cypress videos (if tests fail)
         if: failure()
