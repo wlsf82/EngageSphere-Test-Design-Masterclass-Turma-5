@@ -18,7 +18,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       # Instalar dependências e iniciar o backend
       - name: Install and start backend
@@ -40,7 +40,7 @@ jobs:
 
       # Esperar até que backend e frontend estejam prontos
       - name: Wait for backend and frontend
-        run: npx wait-on http://localhost:3000 http://localhost:3001
+        run: npx wait-on http://localhost:3000 http://localhost:3001/api-docs/
 
   cypress-tests:
     name: Run Cypress Tests
@@ -54,7 +54,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
 
       - name: Install dependencies
         run: npm ci
