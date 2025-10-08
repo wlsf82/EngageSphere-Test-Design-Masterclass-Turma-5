@@ -145,7 +145,7 @@ describe('teste EngageSphere', () => {
     cy.contains('p', /no address available/i).should('be.visible');
   });
 
-  it.only('valida informação quando não tem contato', () => {
+  it('faz download do arquivo CSV', () => {
     const file = `${Cypress.config('downloadsFolder')}/customers.csv`;
 
     cy.waitForTableReady();
