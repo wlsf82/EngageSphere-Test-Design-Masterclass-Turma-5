@@ -1,0 +1,60 @@
+name: Cypress E2E Tests
+
+on:
+  push:
+    branches: [ main ]
+ 
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
+
+      - name: Start backend server
+        run: |
+          cd backend
+          npm start &
+          # Espera até o servidor responder na porta (ajusta conforme tua API)
+          npx wait-on http://localhost:3001
+        env:
+          API_URL: ${{ secrets.API_URL }}
+
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Start frontend server
+        run: |
+          cd frontend
+          npm start &
+          # Espera até o frontend responder
+          npx wait-on http://localhost:3000
+        env:
+          GUI_URL: ${{ secrets.GUI_URL }}
+
+      - name: Run Cypress tests
+        run: npx cypress run --spec "cypress/e2e/**/*.cy.js"
+        env:
+          API_URL: ${{ secrets.API_URL }}
+          GUI_URL: ${{ secrets.GUI_URL }}
+
+      - name: Upload Cypress videos (if tests fail)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: cypress/videos
