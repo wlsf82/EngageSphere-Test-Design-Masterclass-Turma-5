@@ -6,7 +6,9 @@
     "install:frontend": "cd frontend && npm install",
     "install:backend": "cd backend && npm install",
     "start:frontend": "cd frontend && npm start",
-    "start:server": "cd backend && npm start"
+    "start:server": "cd backend && npm start",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "repository": {
     "type": "git",
@@ -17,7 +19,8 @@
   "license": "MIT",
   "homepage": "https://github.com/wlsf82/EngageSphere-Test-Design-Masterclass-Turma-4/blob/main/README.md",
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "cypress": "^15.3.0"
   },
   "browserslist": {
     "production": [
