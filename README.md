@@ -24,6 +24,26 @@ Read the following [doc](./docs/TestEnvironment.md) to install and start the bac
 
 Read the following [doc](./docs/TestCases.md) to get a list of test cases.
 
+Projeto com testes end‑to‑end usando **Cypress**.
+
+## Requisitos
+- Node.js (recomendado 18+)
+- Yarn ou npm
+
+## Instalação
+```bash
+
+# Instalar dependências do app 
+npm install
+
+## Como rodar os testes
+```bash
+# Modo interativo (abre o app do Cypress)
+npm run cy:open
+
+# Modo headless (CI/local)
+npm run cy:run
+
 ___
 
 Made with ❤️ by [Walmyr](https://walmyr.dev).
