@@ -1,0 +1,84 @@
+{
+  "customers": [
+    {
+      "id": 1,
+      "name": "Mathews Co",
+      "employees": 199,
+      "industry": "Logistics",
+      "contactInfo": null,
+      "address": {
+          "street": "988 Kimberly Fort Apt. 921",
+          "city": "Lake Tracy",
+          "state": "Connecticut",
+          "zipCode": "07115",
+          "country": "United States of America"
+      },
+      "size": "Medium"
+    },
+    {
+        "id": 2,
+        "name": "Johns - Reynolds",
+        "employees": 142,
+        "industry": "Finance",
+        "contactInfo": null,
+        "address": {
+            "street": "32326 Heaney Ridges",
+            "city": "New Craigstad",
+            "state": "Hawaii",
+            "zipCode": "39933-5494",
+            "country": "United States of America"
+        },
+        "size": "Medium"
+    },
+    {
+      "id": 3,
+      "name": "Smith LLC",
+      "employees": 106,
+      "industry": "Healthcare",
+      "contactInfo": null,
+      "address": {
+        "street": "1234 Elm Street",
+        "city": "Springfield",
+        "state": "Illinois",
+        "zipCode": "62701",
+        "country": "United States of America"
+      },
+      "size": "Medium"
+    },
+    {
+      "id": 4,
+      "name": "Brown and Sons",
+      "employees": 178,
+      "industry": "Retail",
+      "contactInfo": null,
+      "address": {
+        "street": "5678 Oak Avenue",
+        "city": "Metropolis",
+        "state": "New York",
+        "zipCode": "10001",
+        "country": "United States of America"
+      },
+      "size": "Medium"
+    },
+    {
+      "id": 5,
+      "name": "Green Inc",
+      "employees": 150,
+      "industry": "Technology",
+      "contactInfo": null,
+      "address": {
+        "street": "789 Pine Street",
+        "city": "Techville",
+        "state": "California",
+        "zipCode": "90210",
+        "country": "United States of America"
+      },
+      "size": "Medium"
+    }
+  ],
+  "pageInfo": {
+    "currentPage": 1,
+    "totalPages": 1,
+    "totalCustomers": 5
+  }
+}

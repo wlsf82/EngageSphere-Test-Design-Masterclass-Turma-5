@@ -1,0 +1,25 @@
+
+{
+  "customers": [
+    {
+      "id": 1,
+      "name": "Retail Giants LLC",
+      "employees": 800,
+      "industry": "Retail",
+      "contactInfo": null,
+      "address": {
+          "street": "456 Retail Road",
+          "city": "Shopville",
+          "state": "California",
+          "zipCode": "90210",
+          "country": "United States of America"
+      },
+      "size": "Large"
+    }
+  ],
+  "pageInfo": {
+    "currentPage": 1,
+    "totalPages": 1,
+    "totalCustomers": 1
+  }
+}

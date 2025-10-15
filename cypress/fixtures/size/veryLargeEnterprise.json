@@ -1,0 +1,24 @@
+{
+  "customers": [
+    {
+      "id": 1,
+      "name": "GigaCorp Global",
+      "employees": 50000,
+      "industry": "Conglomerate",
+      "contactInfo": null,
+      "address": {
+          "street": "5000 Global Plaza",
+          "city": "Giga City",
+          "state": "Texas",
+          "zipCode": "73301",
+          "country": "United States of America"
+      },
+      "size": "Very Large Enterprise"
+    }
+  ],
+  "pageInfo": {
+    "currentPage": 1,
+    "totalPages": 1,
+    "totalCustomers": 1
+  }
+}
