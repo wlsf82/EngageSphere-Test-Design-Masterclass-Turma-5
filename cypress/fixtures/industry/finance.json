@@ -1,0 +1,100 @@
+
+{
+  "customers": [
+    {
+      "id": 1,
+      "name": "Finance Experts Inc",
+      "employees": 300,
+      "industry": "Finance",
+      "contactInfo": null,
+      "address": {
+          "street": "123 Finance Lane",
+          "city": "Finance City",
+          "state": "New York",
+          "zipCode": "10001",
+          "country": "United States of America"
+      },
+      "size": "Medium"
+    },
+    {
+      "id": 2,
+      "name": "Global Finance Solutions",
+      "employees": 450,
+      "industry": "Finance",
+      "contactInfo": null,
+      "address": {
+          "street": "456 Global Street",
+          "city": "Finance Town",
+          "state": "California",
+          "zipCode": "90210",
+          "country": "United States of America"
+      },
+      "size": "Large"
+    },
+    {
+      "id": 3,
+      "name": "Finance World LLC",
+      "employees": 600,
+      "industry": "Finance",
+      "contactInfo": null,
+      "address": {
+          "street": "789 Finance Blvd",
+          "city": "Finance City",
+          "state": "Illinois",
+          "zipCode": "60601",
+          "country": "United States of America"
+      },
+      "size": "Enterprise"
+    },
+    {
+      "id": 4,
+      "name": "Finance Corp",
+      "employees": 800,
+      "industry": "Finance",
+      "contactInfo": null,
+      "address": {
+          "street": "101 Finance Plaza",
+          "city": "Financeville",
+          "state": "Texas",
+          "zipCode": "73301",
+          "country": "United States of America"
+      },
+      "size": "Enterprise"
+    },
+    {
+      "id": 5,
+      "name": "Finance Masters",
+      "employees": 1000,
+      "industry": "Finance",
+      "contactInfo": null,
+      "address": {
+          "street": "202 Finance Avenue",
+          "city": "Financeburg",
+          "state": "Florida",
+          "zipCode": "33101",
+          "country": "United States of America"
+      },
+      "size": "Enterprise"
+    },
+    {
+      "id": 6,
+      "name": "Finance Innovators",
+      "employees": 1200,
+      "industry": "Finance",
+      "contactInfo": null,
+      "address": {
+          "street": "303 Finance Road",
+          "city": "Finance City",
+          "state": "New Jersey",
+          "zipCode": "07001",
+          "country": "United States of America"
+      },
+      "size": "Enterprise"
+    }
+  ],
+  "pageInfo": {
+    "currentPage": 1,
+    "totalPages": 1,
+    "totalCustomers": 6
+  }
+}

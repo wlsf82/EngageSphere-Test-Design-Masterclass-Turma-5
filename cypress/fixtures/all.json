@@ -1,0 +1,144 @@
+{
+  "customers": [
+    {
+      "id": 1,
+      "name": "Mathews Co",
+      "employees": 99,
+      "industry": "Logistics",
+      "contactInfo": null,
+      "address": {
+          "street": "988 Kimberly Fort Apt. 921",
+          "city": "Lake Tracy",
+          "state": "Connecticut",
+          "zipCode": "07115",
+          "country": "United States of America"
+      },
+      "size": "Small"
+    },
+    {
+      "id": 2,
+      "name": "Johns - Reynolds",
+      "employees": 42,
+      "industry": "Finance",
+      "contactInfo": null,
+      "address": {
+          "street": "32326 Heaney Ridges",
+          "city": "New Craigstad",
+          "state": "Hawaii",
+          "zipCode": "39933-5494",
+          "country": "United States of America"
+      },
+      "size": "Small"
+    },
+    {
+      "id": 3,
+      "name": "Smith LLC",
+      "employees": 106,
+      "industry": "Healthcare",
+      "contactInfo": null,
+      "address": {
+          "street": "1234 Elm Street",
+          "city": "Springfield",
+          "state": "Illinois",
+          "zipCode": "62701",
+          "country": "United States of America"
+      },
+      "size": "Medium"
+    },
+    {
+      "id": 4,
+      "name": "Brown and Sons",
+      "employees": 178,
+      "industry": "Retail",
+      "contactInfo": null,
+      "address": {
+          "street": "5678 Oak Avenue",
+          "city": "Metropolis",
+          "state": "New York",
+          "zipCode": "10001",
+          "country": "United States of America"
+      },
+      "size": "Medium"
+    },
+    {
+      "id": 5,
+      "name": "Green Inc",
+      "employees": 150,
+      "industry": "Technology",
+      "contactInfo": null,
+      "address": {
+          "street": "789 Pine Street",
+          "city": "Techville",
+          "state": "California",
+          "zipCode": "90210",
+          "country": "United States of America"
+      },
+      "size": "Medium"
+    },
+    {
+      "id": 6,
+      "name": "Global Tech Solutions",
+      "employees": 5000,
+      "industry": "Technology",
+      "contactInfo": null,
+      "address": {
+          "street": "123 Innovation Drive",
+          "city": "Tech City",
+          "state": "California",
+          "zipCode": "94043",
+          "country": "United States of America"
+      },
+      "size": "Enterprise"
+    },
+    {
+      "id": 7,
+      "name": "Worldwide Logistics Inc",
+      "employees": 7500,
+      "industry": "Logistics",
+      "contactInfo": null,
+      "address": {
+          "street": "456 Transport Lane",
+          "city": "Logistics Town",
+          "state": "New York",
+          "zipCode": "10001",
+          "country": "United States of America"
+      },
+      "size": "Enterprise"
+    },
+    {
+      "id": 8,
+      "name": "MegaCorp International",
+      "employees": 20000,
+      "industry": "Conglomerate",
+      "contactInfo": null,
+      "address": {
+          "street": "1000 Global Way",
+          "city": "Mega City",
+          "state": "New York",
+          "zipCode": "10001",
+          "country": "United States of America"
+      },
+      "size": "Large Enterprise"
+    },
+    {
+      "id": 9,
+      "name": "GigaCorp Global",
+      "employees": 50000,
+      "industry": "Conglomerate",
+      "contactInfo": null,
+      "address": {
+          "street": "5000 Global Plaza",
+          "city": "Giga City",
+          "state": "Texas",
+          "zipCode": "73301",
+          "country": "United States of America"
+      },
+      "size": "Very Large Enterprise"
+    }
+  ],
+  "pageInfo": {
+    "currentPage": 1,
+    "totalPages": 1,
+    "totalCustomers": 9
+  }
+}

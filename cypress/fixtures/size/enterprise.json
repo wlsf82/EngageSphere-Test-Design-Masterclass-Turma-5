@@ -1,0 +1,54 @@
+{
+  "customers": [
+    {
+      "id": 1,
+      "name": "Global Tech Solutions",
+      "employees": 5000,
+      "industry": "Technology",
+      "contactInfo": null,
+      "address": {
+          "street": "123 Innovation Drive",
+          "city": "Tech City",
+          "state": "California",
+          "zipCode": "94043",
+          "country": "United States of America"
+      },
+      "size": "Enterprise"
+    },
+    {
+      "id": 2,
+      "name": "Worldwide Logistics Inc",
+      "employees": 7500,
+      "industry": "Logistics",
+      "contactInfo": null,
+      "address": {
+          "street": "456 Transport Lane",
+          "city": "Logistics Town",
+          "state": "New York",
+          "zipCode": "10001",
+          "country": "United States of America"
+      },
+      "size": "Enterprise"
+    },
+    {
+      "id": 3,
+      "name": "Finance Global",
+      "employees": 6000,
+      "industry": "Finance",
+      "contactInfo": null,
+      "address": {
+          "street": "789 Money Street",
+          "city": "Finance City",
+          "state": "Illinois",
+          "zipCode": "60601",
+          "country": "United States of America"
+      },
+      "size": "Enterprise"
+    }
+  ],
+  "pageInfo": {
+    "currentPage": 1,
+    "totalPages": 1,
+    "totalCustomers": 3
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "customers": [
+    {
+      "id": 1,
+      "name": "HR Solutions Inc",
+      "employees": 250,
+      "industry": "HR",
+      "contactInfo": null,
+      "address": {
+          "street": "123 HR Lane",
+          "city": "HR City",
+          "state": "California",
+          "zipCode": "94043",
+          "country": "United States of America"
+      },
+      "size": "Medium"
+    },
+    {
+      "id": 2,
+      "name": "People Management Co",
+      "employees": 400,
+      "industry": "HR",
+      "contactInfo": null,
+      "address": {
+          "street": "456 People Street",
+          "city": "Management Town",
+          "state": "Texas",
+          "zipCode": "73301",
+          "country": "United States of America"
+      },
+      "size": "Large"
+    },
+    {
+      "id": 3,
+      "name": "Talent Acquisition LLC",
+      "employees": 600,
+      "industry": "HR",
+      "contactInfo": null,
+      "address": {
+          "street": "789 Talent Blvd",
+          "city": "Acquisition City",
+          "state": "New York",
+          "zipCode": "10001",
+          "country": "United States of America"
+      },
+      "size": "Enterprise"
+    },
+    {
+      "id": 4,
+      "name": "HR Global Services",
+      "employees": 800,
+      "industry": "HR",
+      "contactInfo": null,
+      "address": {
+          "street": "101 HR Plaza",
+          "city": "Global City",
+          "state": "Florida",
+          "zipCode": "33101",
+          "country": "United States of America"
+      },
+      "size": "Enterprise"
+    }
+  ],
+  "pageInfo": {
+    "currentPage": 1,
+    "totalPages": 1,
+    "totalCustomers": 4
+  }
+}

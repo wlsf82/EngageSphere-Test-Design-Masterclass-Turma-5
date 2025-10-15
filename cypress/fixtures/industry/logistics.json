@@ -1,0 +1,25 @@
+
+{
+  "customers": [
+    {
+      "id": 1,
+      "name": "Logistics Experts Inc",
+      "employees": 500,
+      "industry": "Logistics",
+      "contactInfo": null,
+      "address": {
+          "street": "123 Logistics Lane",
+          "city": "Transport City",
+          "state": "New Jersey",
+          "zipCode": "07001",
+          "country": "United States of America"
+      },
+      "size": "Medium"
+    }
+  ],
+  "pageInfo": {
+    "currentPage": 1,
+    "totalPages": 1,
+    "totalCustomers": 1
+  }
+}
