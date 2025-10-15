@@ -1,17 +1,13 @@
-const { defineConfig } = require("cypress");
-const pluginCypress = require("eslint-plugin-cypress");
+import { defineConfig } from 'cypress'
+import pluginCypress from 'eslint-plugin-cypress'
 
-module.exports = defineConfig({
+export default defineConfig({
   files: ['cypress/**/*.js'],
-  extends: [
-    pluginCypress.configs.recommended,
-  ],
+  extends: [pluginCypress.configs.recommended],
   rules: {
     'cypress/no-unnecessary-waiting': 'off'
   },
   e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
-  },
-});
+    baseUrl: 'http://localhost:3000'
+  }
+})
