@@ -6,7 +6,9 @@
     "install:frontend": "cd frontend && npm install",
     "install:backend": "cd backend && npm install",
     "start:frontend": "cd frontend && npm start",
-    "start:server": "cd backend && npm start"
+    "start:server": "cd backend && npm start",
+    "cypress:open": "npm run cypress open",
+    "prettier-format": "prettier --config .prettierrc '**/*.js' --write"
   },
   "repository": {
     "type": "git",
@@ -18,9 +20,17 @@
   "homepage": "https://github.com/wlsf82/EngageSphere-Test-Design-Masterclass-Turma-4/blob/main/README.md",
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@eslint/js": "^9.37.0",
     "axe-core": "^4.11.0",
     "cypress": "^15.4.0",
-    "cypress-axe": "^1.7.0"
+    "cypress-axe": "^1.7.0",
+    "eslint": "^9.37.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-cypress": "^5.2.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.4.0",
+    "prettier": "3.6.2",
+    "typescript-eslint": "^8.46.1"
   },
   "browserslist": {
     "production": [
