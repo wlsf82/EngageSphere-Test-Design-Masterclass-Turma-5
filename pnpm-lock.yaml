@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      dotenv:
+        specifier: ^17.2.3
+        version: 17.2.3
     devDependencies:
       '@babel/plugin-proposal-private-property-in-object':
         specifier: ^7.21.11
@@ -26,6 +30,9 @@ importers:
       eslint:
         specifier: ^9.37.0
         version: 9.37.0
+      eslint-config-prettier:
+        specifier: ^10.1.8
+        version: 10.1.8(eslint@9.37.0)
       eslint-plugin-cypress:
         specifier: ^5.2.0
         version: 5.2.0(eslint@9.37.0)
@@ -624,6 +631,10 @@ packages:
     resolution: {integrity: sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw==}
     engines: {node: '>=0.10.0'}
 
+  dotenv@17.2.3:
+    resolution: {integrity: sha512-JVUnt+DUIzu87TABbhPmNfVdBDt18BLOWjMUFJMSi/Qqg7NTYtabbvSNJGOJ7afbRuv9D/lngizHtP7QyLQ+9w==}
+    engines: {node: '>=12'}
+
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
     engines: {node: '>= 0.4'}
@@ -687,6 +698,12 @@ packages:
   escape-string-regexp@4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
+
+  eslint-config-prettier@10.1.8:
+    resolution: {integrity: sha512-82GZUjRS0p/jganf6q1rEO25VSoHH0hKPCTrgillPjdI/3bgBhAE1QzHrHTizjpRvy6pGAvKjDJtk2pF9NDq8w==}
+    hasBin: true
+    peerDependencies:
+      eslint: '>=7.0.0'
 
   eslint-plugin-cypress@5.2.0:
     resolution: {integrity: sha512-vuCUBQloUSILxtJrUWV39vNIQPlbg0L7cTunEAzvaUzv9LFZZym+KFLH18n9j2cZuFPdlxOqTubCvg5se0DyGw==}
@@ -2442,6 +2459,8 @@ snapshots:
     dependencies:
       esutils: 2.0.3
 
+  dotenv@17.2.3: {}
+
   dunder-proto@1.0.1:
     dependencies:
       call-bind-apply-helpers: 1.0.2
@@ -2572,6 +2591,10 @@ snapshots:
   escape-string-regexp@1.0.5: {}
 
   escape-string-regexp@4.0.0: {}
+
+  eslint-config-prettier@10.1.8(eslint@9.37.0):
+    dependencies:
+      eslint: 9.37.0
 
   eslint-plugin-cypress@5.2.0(eslint@9.37.0):
     dependencies:
