@@ -2,6 +2,7 @@
   "name": "engagesphere-test-design-masterclass-turma-4",
   "version": "1.0.0",
   "description": "Sample project with a Node.js backend and a React frontend.",
+  "type": "module",
   "scripts": {
     "install:frontend": "cd frontend && npm install",
     "install:backend": "cd backend && npm install",
