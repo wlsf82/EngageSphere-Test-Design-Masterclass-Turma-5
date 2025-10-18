@@ -1,5 +1,4 @@
 import { defineConfig } from 'cypress'
-import pluginCypress from 'eslint-plugin-cypress'
 
 export default defineConfig({
   files: ['cypress/**/*.js'],
