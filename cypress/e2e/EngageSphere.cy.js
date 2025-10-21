@@ -1,4 +1,4 @@
-import { mockCustomersPage, mockAllCustomers } from '../support/helper'
+import { mockCustomersPage, mockAllCustomers, CUSTOMERS_API_URL } from '../support/helper'
 
 describe('EngageSphere - Cookie Banner', () => {
   beforeEach(() => {
@@ -144,7 +144,7 @@ describe('EngageSphere - Detalhes do Cliente e Download', () => {
   it('faz download do arquivo CSV com os dados corretos da tabela', () => {
     const filePath = `${Cypress.config('downloadsFolder')}/customers.csv`;
 
-    cy.contains('button', /download csv/i).click()
+    cy.contains('button', 'Download CSV').click()
     cy.readFile(filePath, 'utf8', { timeout: 15000 }).then((csv) => {
       const lines = csv.trim().split(/\r?\n/)
       const header = lines[0]
@@ -237,5 +237,35 @@ describe('EngageSphere - Paginação', () => {
   })
 })
 
+describe('EngageSphere - Ordenação', () => {
+  beforeEach(() => {
+    cy.setCookie('cookieConsent', 'accepted')
+    mockAllCustomers()
+    cy.visit('/')
+    cy.get('table').should('be.visible')
+  })
 
+  it('ordena por tamanho em ordem decrescente - padrão', () => {
+    cy.get('table tbody tr').last().should('contain.text', 'Small')
+  })
+
+  it('ordena por tamanho em ordem crescente', () => {
+    cy.contains('th', 'Size').find('button').click()
+    cy.get('table tbody tr').first().should('contain.text', 'Small')
+    cy.get('table tbody tr').last().should('contain.text', 'Enterprise')
+  })
+
+  it('ordena por número de funcionários em ordem decrescente', () => {
+    cy.contains('button', 'Number of employees ').click()
+    cy.get('table tbody tr').first().should('contain.text', '2710')
+    cy.get('table tbody tr').last().should('contain.text', '99')
+  })
+
+  it('ordena por número de funcionários em ordem crescente', () => {
+    cy.contains('button', 'Number of employees ').click()
+    cy.contains('button', 'Number of employees ').click()
+    cy.get('table tbody tr').first().should('contain.text', '99')
+    cy.get('table tbody tr').last().should('contain.text', '2710')
+  })
+})
 

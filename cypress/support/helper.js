@@ -1,4 +1,4 @@
-const CUSTOMERS_API_URL = Cypress.env('apiUrl')
+export const CUSTOMERS_API_URL = Cypress.env('apiUrl')
 
 export function mockAllCustomers() {
   cy.fixture('customers').then((data) => {
