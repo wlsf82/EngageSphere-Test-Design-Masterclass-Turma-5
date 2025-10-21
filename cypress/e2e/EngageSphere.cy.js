@@ -27,7 +27,7 @@ describe('EngageSphere - Filtros', () => {
     cy.get('table').should('be.visible')
   })
 
-  it('Filtra por todos os tamanho de empresa disponivei', () => {
+  it('Filtra por todos os tamanho de empresa disponiveis', () => {
     const COMPANY_SIZES = ['Small', 'Medium', 'Enterprise', 'Large Enterprise', 'Very Large Enterprise']
 
     cy.wrap(COMPANY_SIZES).each((size) => {
