@@ -1,49 +1,82 @@
-# EngageSphere
+# EngageSphere - Test Design Masterclass (Turma 5)
 
-Sample project with a [Node.js](https://nodejs.org/) backend and a [React](https://react.dev/) frontend.
+Projeto exemplo com backend em [Node.js](https://nodejs.org/) e frontend em [React](https://react.dev/), incluindo testes automatizados com [Cypress](https://www.cypress.io/).
 
-## Business rules
+## 📋 Sobre o Projeto
 
-Read the following [doc](./docs/Requirements.md) to understand all the EngageSphere application's functionalities.
+O EngageSphere é uma aplicação full-stack desenvolvida para fins educacionais, focada em práticas de design e automação de testes.
 
-## Pre-requirements
+Leia a [documentação de requisitos](docs/Requirements.md) para entender todas as funcionalidades da aplicação EngageSphere.
 
-To run this project, you will need:
+## 🛠️ Pré-requisitos
 
-- [git](https://git-scm.com/downloads) (I've used version `2.42.1` while writing this doc)
-- [Node.js](https://nodejs.org/en/) (I've used version `v22.19.0` while writing this doc)
-- npm (I've used version `10.9.3` while writing this doc)
+Para executar este projeto, você precisará de:
 
-**Note:** When installing Node.js, npm is automatically installed too.
+- [git](https://git-scm.com/downloads) (versão 2.42.1 ou superior)
+- [Node.js](https://nodejs.org/en/) (versão v22.19.0 ou superior)
+- npm (versão 10.9.3 ou superior)
 
-## Installing and starting the servers
+> **Nota:** Ao instalar o Node.js, o npm é instalado automaticamente.
 
-Read the following [doc](./docs/TestEnvironment.md) to install and start the backend and frontend servers.
+## 🚀 Instalação e Execução
 
-## Test cases
+Leia a [documentação do ambiente de teste](docs/TestEnvironment.md) para instalar e iniciar os servidores backend e frontend.
 
-Read the following [doc](./docs/TestCases.md) to get a list of test cases.
+## 🧪 Testes Automatizados
 
-Projeto com testes end‑to‑end usando **Cypress**.
+Este projeto inclui testes automatizados end-to-end utilizando Cypress.
 
-## Requisitos
-- Node.js (recomendado 18+)
-- Yarn ou npm
+### Instalando o Cypress
 
-## Instalação
 ```bash
+npm install cypress --save-dev
+```
 
-# Instalar dependências do app 
-npm install
+### Executando os Testes
 
-## Como rodar os testes
+**Modo Interativo (Cypress Test Runner):**
 ```bash
-# Modo interativo (abre o app do Cypress)
-npm run cy:open
+npx cypress open
+```
 
-# Modo headless (CI/local)
-npm run cy:run
+**Modo Headless (linha de comando):**
+```bash
+npx cypress run
+```
 
-___
+**Executar testes específicos:**
+```bash
+npx cypress run --spec "cypress/e2e/nome-do-teste.cy.js"
+```
 
-Made with ❤️ by [Walmyr](https://walmyr.dev).
+### Estrutura dos Testes
+
+```
+cypress/
+├── e2e/              # Testes end-to-end
+├── fixtures/         # Dados de teste
+├── support/          # Comandos customizados e configurações
+└── cypress.config.js # Configuração do Cypress
+```
+
+### Casos de Teste
+
+Consulte a [documentação de casos de teste](docs/TestCases.md) para visualizar a lista completa de cenários testados.
+
+## 📚 Documentação Adicional
+
+- [Requisitos da Aplicação](docs/Requirements.md)
+- [Ambiente de Teste](docs/TestEnvironment.md)
+- [Casos de Teste](docs/TestCases.md)
+
+## 🤝 Contribuindo
+
+Sinta-se à vontade para abrir issues e pull requests para melhorias nos testes ou na aplicação.
+
+## 👨‍💻 Autor Original
+
+Projeto original criado com ❤️ por [Walmyr](https://walmyr.dev).
+
+## 📝 Licença
+
+Este projeto é de código aberto e está disponível para fins educacionais.
