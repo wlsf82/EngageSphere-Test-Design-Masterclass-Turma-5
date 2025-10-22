@@ -1,4 +1,4 @@
-describe("EngageSphere", () => {
+describe("EngageSphere Without Cookies", () => {
   beforeEach(() => {
     cy.setCookie("cookieConsent", "accepted");
     cy.visit("/");
@@ -32,51 +32,24 @@ describe("EngageSphere", () => {
   });
 
   it("It renders the footer with the right text and links", () => {
-    // Arrange
-    const footerContainer = 'footer[class^="Footer_container"]';
-
     // Assert
-    cy.contains(footerContainer, "Copyright 2025 - Talking About Testing").should("be.visible");
+    cy.contains("footer", "Copyright 2025 - Talking About Testing").should("be.visible");
 
-    cy.contains(`${footerContainer} a`, "Blog")
+    cy.contains("footer a", "Blog")
       .should("be.visible")
       .and("have.attr", "href", "https://talkingabouttesting.com");
 
-    cy.contains(`${footerContainer} a`, "Courses")
+    cy.contains("footer a", "Courses")
       .should("be.visible")
       .and("have.attr", "href", "https://talking-about-testing.vercel.app/");
 
-    cy.contains(`${footerContainer} a`, "Podcast")
+    cy.contains("footer a", "Podcast")
       .should("be.visible")
       .and("have.attr", "href", "https://open.spotify.com/show/5HFlqWkk6qtgJquUixyuKo");
 
-    cy.contains(`${footerContainer} a`, "YouTube")
+    cy.contains("footer a", "YouTube")
       .should("be.visible")
       .and("have.attr", "href", "https://youtube.com/@talkingabouttesting");
-  });
-
-  it("It shows the cookie banner on first visit", () => {
-    // Arrange
-    cy.clearCookie("cookieConsent");
-    cy.reload();
-
-    // Assert
-    cy.get('[class^="CookieConsent_banner"]').should("be.visible");
-    cy.contains("button", "Accept").should("be.visible");
-    cy.contains("button", "Decline").should("be.visible");
-  });
-
-  it("It accepts the cookie banner on first visit", () => {
-    // Arrange
-    cy.clearCookie("cookieConsent");
-    cy.reload();
-    cy.get('[class^="CookieConsent_banner"]').should("be.visible");
-
-    // Act
-    cy.contains("button", "Accept").click();
-
-    // Assert
-    cy.get('[class^="CookieConsent_banner"]').should("not.exist");
   });
 
   it("It renders the 'Hi there' greeting when no name is provided", () => {
@@ -91,5 +64,42 @@ describe("EngageSphere", () => {
 
     // Assert
     cy.contains("h2", "Hi Joe").should("be.visible");
+  });
+});
+
+describe("EngageSphere With Cookies", () => {
+  beforeEach(() => {
+    cy.visit("/");
+  });
+
+  it("It shows the cookie banner on first visit", () => {
+    // Assert
+    cy.get('[class^="CookieConsent_banner"]').should("be.visible");
+    cy.contains("button", "Accept").should("be.visible");
+    cy.contains("button", "Decline").should("be.visible");
+  });
+
+  it("It accepts the cookies banner on first visit", () => {
+    // Arrange
+    cy.get('[class^="CookieConsent_banner"]').should("be.visible");
+
+    // Act
+    cy.contains("button", "Accept").click();
+
+    // Assert
+    cy.get('[class^="CookieConsent_banner"]').should("not.exist");
+    cy.getCookie("cookieConsent").should("have.property", "value", "accepted");
+  });
+
+  it("It declines the cookies banner on first visit", () => {
+    // Arrange
+    cy.get('[class^="CookieConsent_banner"]').should("be.visible");
+
+    // Act
+    cy.contains("button", "Decline").click();
+
+    // Assert
+    cy.get('[class^="CookieConsent_banner"]').should("not.exist");
+    cy.getCookie("cookieConsent").should("have.property", "value", "declined");
   });
 });
