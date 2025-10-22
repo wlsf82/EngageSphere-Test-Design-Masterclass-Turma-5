@@ -224,7 +224,7 @@ describe("Messenger in Mobile Viewport", () => {
     cy.viewport("iphone-x");
   });
 
-  it.only("It shows the Company name and Action columns and hides the ID, Industry, Number of Employees, and Size columns in a mobile viewport", () => {
+  it("It shows the Company name and Action columns and hides the ID, Industry, Number of Employees, and Size columns in a mobile viewport", () => {
     // Arrange
     // Act
 
@@ -236,5 +236,64 @@ describe("Messenger in Mobile Viewport", () => {
     cy.contains("th", "Industry").should("not.be.visible");
     cy.contains("th", "Number of employees ").should("not.be.visible");
     cy.contains("th", "Size ").should("not.be.visible");
+  });
+});
+
+describe("EngageSphere API test", () => {
+  beforeEach(() => {});
+
+  it("It returns the correct status and body structure", () => {
+    // Act
+    cy.request({
+      method: "GET",
+      url: "http://localhost:3001/customers",
+      qs: {
+        page: 1,
+        limit: 10,
+        size: "Very Large Enterprise",
+        industry: "Technology",
+      },
+    }).then((response) => {
+      // Assert
+      expect(response.status).to.eq(200);
+
+      const customers = response.body.customers;
+
+      expect(customers).to.be.an("array");
+
+      customers.forEach((customer) => {
+        expect(customer).to.be.an("object");
+        expect(customer).to.include.keys("id", "name", "employees", "size", "industry", "address");
+
+        expect(customer.id).to.be.a("number");
+        expect(customer.name).to.be.a("string");
+        expect(customer.employees).to.be.a("number");
+        expect(customer.size).to.be.a("string");
+        expect(customer.industry).to.be.a("string");
+
+        if (customer.contactInfo !== null) {
+          expect(customer.address).to.be.an("object");
+          expect(customer.contactInfo).to.include.keys("name", "email");
+
+          expect(customer.contactInfo.name).to.be.a("string");
+          expect(customer.contactInfo.email).to.be.a("string");
+        } else {
+          expect(customer.contactInfo).to.be.null;
+        }
+
+        if (customer.address !== null) {
+          expect(customer.address).to.be.an("object");
+          expect(customer.address).to.include.keys("street", "city", "state", "zipCode", "country");
+
+          expect(customer.address.street).to.be.a("string");
+          expect(customer.address.city).to.be.a("string");
+          expect(customer.address.state).to.be.a("string");
+          expect(customer.address.zipCode).to.be.a("string");
+          expect(customer.address.country).to.be.a("string");
+        } else {
+          expect(customer.address).to.be.null;
+        }
+      });
+    });
   });
 });
