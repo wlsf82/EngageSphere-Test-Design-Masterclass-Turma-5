@@ -76,7 +76,7 @@ describe("EngageSphere Without Cookies", () => {
       .and("have.attr", "placeholder", "E.g., John Doe");
   });
 
-  it.only("It opens and closes the messenger", () => {
+  it("It opens and closes the messenger", () => {
     // Assert
     cy.get("button[aria-label='Open messenger']").should("be.visible");
     cy.get("[class^='Messenger_box']").should("not.exist");
@@ -111,41 +111,73 @@ describe("EngageSphere Without Cookies", () => {
     cy.get("button[aria-label='Open messenger']").should("be.visible");
     cy.get("[class^='Messenger_box']").should("not.exist");
   });
-});
 
-describe("EngageSphere With Cookies", () => {
-  beforeEach(() => {
-    cy.visit("/");
-  });
-
-  it("It shows the cookie banner on first visit", () => {
-    // Assert
-    cy.get('[class^="CookieConsent_banner"]').should("be.visible");
-    cy.contains("button", "Accept").should("be.visible");
-    cy.contains("button", "Decline").should("be.visible");
-  });
-
-  it("It accepts the cookies banner on first visit", () => {
+  it.only("It makes sure all messenger's fields are mandatory and the first one is focused", () => {
     // Arrange
-    cy.get('[class^="CookieConsent_banner"]').should("be.visible");
+    cy.get("button[aria-label='Open messenger']").click();
+
+    // Assert
+    cy.get("#messenger-name").should("be.focused");
 
     // Act
-    cy.contains("button", "Accept").click();
+    cy.get("[class^='Messenger_box'] button").click();
 
     // Assert
-    cy.get('[class^="CookieConsent_banner"]').should("not.exist");
-    cy.getCookie("cookieConsent").should("have.property", "value", "accepted");
-  });
-
-  it("It declines the cookies banner on first visit", () => {
-    // Arrange
-    cy.get('[class^="CookieConsent_banner"]').should("be.visible");
+    cy.get("[class^='Messenger_box']").should("be.visible");
 
     // Act
-    cy.contains("button", "Decline").click();
+    cy.get("#messenger-name").type("John Doe");
+    cy.get("[class^='Messenger_box'] button").click();
 
     // Assert
-    cy.get('[class^="CookieConsent_banner"]').should("not.exist");
-    cy.getCookie("cookieConsent").should("have.property", "value", "declined");
+    cy.get("[class^='Messenger_box']").should("be.visible");
+
+    // Act
+    cy.get("#email").type("johnnydoe1990@hotmail.com");
+    cy.get("[class^='Messenger_box'] button").click();
+
+    // Assert
+    cy.get("[class^='Messenger_box']").should("be.visible");
+
+    // Act
+    cy.get("#message").type("This is a serious and important message!");
+    cy.get("[class^='Messenger_box'] button").click();
+  });
+
+  describe("EngageSphere With Cookies", () => {
+    beforeEach(() => {
+      cy.visit("/");
+    });
+
+    it("It shows the cookie banner on first visit", () => {
+      // Assert
+      cy.get('[class^="CookieConsent_banner"]').should("be.visible");
+      cy.contains("button", "Accept").should("be.visible");
+      cy.contains("button", "Decline").should("be.visible");
+    });
+
+    it("It accepts the cookies banner on first visit", () => {
+      // Arrange
+      cy.get('[class^="CookieConsent_banner"]').should("be.visible");
+
+      // Act
+      cy.contains("button", "Accept").click();
+
+      // Assert
+      cy.get('[class^="CookieConsent_banner"]').should("not.exist");
+      cy.getCookie("cookieConsent").should("have.property", "value", "accepted");
+    });
+
+    it("It declines the cookies banner on first visit", () => {
+      // Arrange
+      cy.get('[class^="CookieConsent_banner"]').should("be.visible");
+
+      // Act
+      cy.contains("button", "Decline").click();
+
+      // Assert
+      cy.get('[class^="CookieConsent_banner"]').should("not.exist");
+      cy.getCookie("cookieConsent").should("have.property", "value", "declined");
+    });
   });
 });
