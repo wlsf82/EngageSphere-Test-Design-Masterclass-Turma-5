@@ -61,9 +61,19 @@ describe("EngageSphere Without Cookies", () => {
   it("It renders the 'Hi Joe' greeting when name is provided", () => {
     // Act
     cy.get('[data-testid="name"]').type("Joe");
-
     // Assert
     cy.contains("h2", "Hi Joe").should("be.visible");
+  });
+
+  it.only("It renders the header with a heading, theme's toggle, and a text input field", () => {
+    // Assert
+    cy.get("[class^='Header_container']").should("be.visible").and("contain.text", "EngageSphere");
+    cy.get("[class^='Header_container'] button")
+      .should("be.visible")
+      .and("have.attr", "aria-label", "theme light activated");
+    cy.get("[class^='Header_container'] input")
+      .should("be.visible")
+      .and("have.attr", "placeholder", "E.g., John Doe");
   });
 });
 
