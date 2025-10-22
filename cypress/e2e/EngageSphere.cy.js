@@ -162,6 +162,23 @@ describe("EngageSphere Without Cookies", () => {
     cy.get("[class^='Messenger_success']").should("not.exist");
   });
 
+  it.only("It clears all the messenger's form fields when filling them, closing the messenger, and opening it again", () => {
+    // Arrange
+    cy.get("button[aria-label='Open messenger']").click();
+
+    // Act
+    cy.get("#messenger-name").type("John Doe");
+    cy.get("#email").type("johnnydoe1990@hotmail.com");
+    cy.get("#message").type("This is a serious and important message!");
+    cy.get("button[aria-label='Close messenger']").click();
+    cy.get("button[aria-label='Open messenger']").click();
+
+    // Assert
+    cy.get("#messenger-name").should("have.value", "");
+    cy.get("#email").should("have.value", "");
+    cy.get("#message").should("have.value", "");
+  });
+
   describe("EngageSphere With Cookies", () => {
     beforeEach(() => {
       cy.visit("/");
