@@ -65,7 +65,7 @@ describe("EngageSphere Without Cookies", () => {
     cy.contains("h2", "Hi Joe").should("be.visible");
   });
 
-  it.only("It renders the header with a heading, theme's toggle, and a text input field", () => {
+  it("It renders the header with a heading, theme's toggle, and a text input field", () => {
     // Assert
     cy.get("[class^='Header_container']").should("be.visible").and("contain.text", "EngageSphere");
     cy.get("[class^='Header_container'] button")
@@ -74,6 +74,42 @@ describe("EngageSphere Without Cookies", () => {
     cy.get("[class^='Header_container'] input")
       .should("be.visible")
       .and("have.attr", "placeholder", "E.g., John Doe");
+  });
+
+  it.only("It opens and closes the messenger", () => {
+    // Assert
+    cy.get("button[aria-label='Open messenger']").should("be.visible");
+    cy.get("[class^='Messenger_box']").should("not.exist");
+
+    // Act
+    cy.get("button[aria-label='Open messenger']").click();
+
+    // Assert
+    cy.get("button[aria-label='Close messenger']").should("be.visible");
+    cy.get("[class^='Messenger_box']").should("be.visible");
+
+    cy.get("[class^='Messenger_header']")
+      .should("be.visible")
+      .and("contain.text", "How can we help you?");
+
+    cy.get("#messenger-name")
+      .should("be.visible")
+      .and("have.attr", "placeholder", "Type your name here");
+
+    cy.get("#email").should("be.visible").and("have.attr", "placeholder", "Type your email here");
+
+    cy.get("#message")
+      .should("be.visible")
+      .and("have.attr", "placeholder", "Type your message here");
+
+    cy.get("[class^='Messenger_box'] button").should("be.visible").and("contain.text", "Send");
+
+    // Act
+    cy.get("button[aria-label='Close messenger']").click();
+
+    // Assert
+    cy.get("button[aria-label='Open messenger']").should("be.visible");
+    cy.get("[class^='Messenger_box']").should("not.exist");
   });
 });
 
