@@ -112,7 +112,7 @@ describe("EngageSphere Without Cookies", () => {
     cy.get("[class^='Messenger_box']").should("not.exist");
   });
 
-  it.only("It makes sure all messenger's fields are mandatory and the first one is focused", () => {
+  it("It makes sure all messenger's fields are mandatory and the first one is focused", () => {
     // Arrange
     cy.get("button[aria-label='Open messenger']").click();
 
@@ -142,6 +142,24 @@ describe("EngageSphere Without Cookies", () => {
     // Act
     cy.get("#message").type("This is a serious and important message!");
     cy.get("[class^='Messenger_box'] button").click();
+  });
+
+  it.only("It shows and hides a success message when successfully submitting the messenger form", () => {
+    // Arrange
+    cy.get("button[aria-label='Open messenger']").click();
+    cy.get("#messenger-name").type("John Doe");
+    cy.get("#email").type("johnnydoe1990@hotmail.com");
+    cy.get("#message").type("This is a serious and important message!");
+
+    // Act
+    cy.get("[class^='Messenger_box'] button").click();
+
+    // Assert
+    cy.get("[class^='Messenger_success']")
+      .should("be.visible")
+      .and("contain.text", "Your message has been sent.");
+
+    cy.get("[class^='Messenger_success']").should("not.exist");
   });
 
   describe("EngageSphere With Cookies", () => {
