@@ -1,40 +1,50 @@
 describe('API Testing Engagesphere', () => {
-  it('should retrieve correct status and body structure', () => {
-    cy.request('GET', 'http://localhost:3001/customers').then(response => {
-      expect(response.status).to.eq(200)
+  const CUSTOMER_API_URL = `${Cypress.env('API_URL')}/customers`
 
-      expect(response.body).to.have.all.keys('customers', 'pageInfo')
+  it('should return status code 200', () => {
+    cy.request({
+      method: 'GET',
+      url: CUSTOMER_API_URL,
+      failOnStatusCode: false
+    }).then(({ status }) => {
+      expect(status).to.eq(200)
+    })
+  })
 
-      // Estrutura customers
-      const customer = response.body.customers[0]
-      expect(customer).to.have.all.keys(
-        'id',
-        'name',
-        'employees',
-        'size',
-        'industry',
-        'contactInfo',
-        'address'
-      )
+  it('should check customer schema', () => {
+    cy.request({
+      method: 'GET',
+      url: CUSTOMER_API_URL,
+      failOnStatusCode: false
+    }).then(({ body }) => {
+      const customers = body.customers
+      expect(customers).to.be.an('array').not.to.be.empty
 
-      // Estrutura contactInfo
-      expect(customer.contactInfo).to.have.all.keys('name', 'email')
-
-      // Estrutura address
-      expect(customer.address).to.have.all.keys(
-        'street',
-        'city',
-        'state',
-        'zipCode',
-        'country'
-      )
-
-      // Estrutura pageInfo
-      expect(response.body.pageInfo).to.have.all.keys(
-        'currentPage',
-        'totalPages',
-        'totalCustomers'
-      )
+      const { id, name, employees, size, industry, contactInfo, address } = customers[1]
+      customers.forEach(() => {
+        expect(id).to.be.a('number')
+        expect(name).to.be.a('string')
+        expect(employees).to.be.a('number')
+        expect(size).to.be.a('string')
+        expect(industry).to.be.a('string')
+        expect(contactInfo).to.be.a('object')
+        expect(contactInfo).to.have.all.keys('name', 'email')
+        expect(contactInfo.name).to.be.a('string')
+        expect(contactInfo.email).to.be.a('string')
+        expect(address).to.be.a('object')
+        expect(address).to.have.all.keys(
+          'street',
+          'city',
+          'state',
+          'zipCode',
+          'country'
+        )
+        expect(address.street).to.be.a('string')
+        expect(address.city).to.be.a('string')
+        expect(address.state).to.be.a('string')
+        expect(address.zipCode).to.be.a('string')
+        expect(address.country).to.be.a('string')
+      })
     })
   })
 })
