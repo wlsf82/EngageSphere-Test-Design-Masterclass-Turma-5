@@ -144,7 +144,7 @@ describe("EngageSphere Without Cookies", () => {
     cy.get("[class^='Messenger_box'] button").click();
   });
 
-  it.only("It shows and hides a success message when successfully submitting the messenger form", () => {
+  it("It shows and hides a success message when successfully submitting the messenger form", () => {
     // Arrange
     cy.get("button[aria-label='Open messenger']").click();
     cy.get("#messenger-name").type("John Doe");
@@ -162,7 +162,7 @@ describe("EngageSphere Without Cookies", () => {
     cy.get("[class^='Messenger_success']").should("not.exist");
   });
 
-  it.only("It clears all the messenger's form fields when filling them, closing the messenger, and opening it again", () => {
+  it("It clears all the messenger's form fields when filling them, closing the messenger, and opening it again", () => {
     // Arrange
     cy.get("button[aria-label='Open messenger']").click();
 
@@ -178,41 +178,63 @@ describe("EngageSphere Without Cookies", () => {
     cy.get("#email").should("have.value", "");
     cy.get("#message").should("have.value", "");
   });
+});
 
-  describe("EngageSphere With Cookies", () => {
-    beforeEach(() => {
-      cy.visit("/");
-    });
+describe("EngageSphere With Cookies", () => {
+  beforeEach(() => {
+    cy.visit("/");
+  });
 
-    it("It shows the cookie banner on first visit", () => {
-      // Assert
-      cy.get('[class^="CookieConsent_banner"]').should("be.visible");
-      cy.contains("button", "Accept").should("be.visible");
-      cy.contains("button", "Decline").should("be.visible");
-    });
+  it("It shows the cookie banner on first visit", () => {
+    // Assert
+    cy.get('[class^="CookieConsent_banner"]').should("be.visible");
+    cy.contains("button", "Accept").should("be.visible");
+    cy.contains("button", "Decline").should("be.visible");
+  });
 
-    it("It accepts the cookies banner on first visit", () => {
-      // Arrange
-      cy.get('[class^="CookieConsent_banner"]').should("be.visible");
+  it("It accepts the cookies banner on first visit", () => {
+    // Arrange
+    cy.get('[class^="CookieConsent_banner"]').should("be.visible");
 
-      // Act
-      cy.contains("button", "Accept").click();
+    // Act
+    cy.contains("button", "Accept").click();
 
-      // Assert
-      cy.get('[class^="CookieConsent_banner"]').should("not.exist");
-      cy.getCookie("cookieConsent").should("have.property", "value", "accepted");
-    });
+    // Assert
+    cy.get('[class^="CookieConsent_banner"]').should("not.exist");
+    cy.getCookie("cookieConsent").should("have.property", "value", "accepted");
+  });
 
-    it("It declines the cookies banner on first visit", () => {
-      // Arrange
-      cy.get('[class^="CookieConsent_banner"]').should("be.visible");
+  it("It declines the cookies banner on first visit", () => {
+    // Arrange
+    cy.get('[class^="CookieConsent_banner"]').should("be.visible");
 
-      // Act
-      cy.contains("button", "Decline").click();
+    // Act
+    cy.contains("button", "Decline").click();
 
-      // Assert
-      cy.get('[class^="CookieConsent_banner"]').should("not.exist");
-      cy.getCookie("cookieConsent").should("have.property", "value", "declined");
-    });
+    // Assert
+    cy.get('[class^="CookieConsent_banner"]').should("not.exist");
+    cy.getCookie("cookieConsent").should("have.property", "value", "declined");
+  });
+});
+
+describe("Messenger in Mobile Viewport", () => {
+  beforeEach(() => {
+    cy.setCookie("cookieConsent", "accepted");
+    cy.visit("/");
+    cy.viewport("iphone-x");
+  });
+
+  it.only("It shows the Company name and Action columns and hides the ID, Industry, Number of Employees, and Size columns in a mobile viewport", () => {
+    // Arrange
+    // Act
+
+    // Assert
+    cy.contains("th", "Company name").should("be.visible");
+    cy.contains("th", "Action").should("be.visible");
+
+    cy.contains("th", "ID").should("not.be.visible");
+    cy.contains("th", "Industry").should("not.be.visible");
+    cy.contains("th", "Number of employees ").should("not.be.visible");
+    cy.contains("th", "Size ").should("not.be.visible");
   });
 });
