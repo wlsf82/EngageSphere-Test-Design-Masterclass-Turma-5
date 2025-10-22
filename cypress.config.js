@@ -1,8 +1,10 @@
 import { defineConfig } from 'cypress'
 
 export default defineConfig({
-  files: ['cypress/**/*.js'],
   fixturesFolder: false,
+  env: {
+    API_URL: 'http://localhost:3001'
+  },
   e2e: {
     baseUrl: 'http://localhost:3000'
   }
