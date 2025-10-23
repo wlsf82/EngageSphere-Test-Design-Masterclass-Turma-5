@@ -1,0 +1,36 @@
+name: Cypress E2E Tests
+
+on:
+  push:
+    branches: [ main ]
+ 
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Install backend modules
+      uses: cypress-io/github-action@v6
+      with:
+        install-command: npm run install:backend
+        runTests: false
+    - name: Install frontend modules
+      uses: cypress-io/github-action@v6
+      with:
+        install-command: npm run install:frontend
+        runTests: false
+    - name: Run frontend GUI tests 🧪
+      uses: cypress-io/github-action@v6
+      with:
+        start: npm run start:frontend, npm run start:server
+        command: npm cypress run
+        
+    - name: Upload Cypress videos (if tests fail)
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: cypress-videos
+        path: cypress/videos
+        

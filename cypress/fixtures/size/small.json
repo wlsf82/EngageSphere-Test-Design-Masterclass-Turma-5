@@ -1,0 +1,69 @@
+{
+  "customers": [
+    {
+      "id": 1,
+      "name": "Mathews Co",
+      "employees": 99,
+      "industry": "Logistics",
+      "contactInfo": null,
+      "address": {
+          "street": "988 Kimberly Fort Apt. 921",
+          "city": "Lake Tracy",
+          "state": "Connecticut",
+          "zipCode": "07115",
+          "country": "United States of America"
+      },
+      "size": "Small"
+    },
+    {
+        "id": 2,
+        "name": "Johns - Reynolds",
+        "employees": 42,
+        "industry": "Finance",
+        "contactInfo": null,
+        "address": {
+            "street": "32326 Heaney Ridges",
+            "city": "New Craigstad",
+            "state": "Hawaii",
+            "zipCode": "39933-5494",
+            "country": "United States of America"
+        },
+        "size": "Small"
+    },
+    {
+      "id": 3,
+      "name": "Smith LLC",
+      "employees": 6,
+      "industry": "Healthcare",
+      "contactInfo": null,
+      "address": {
+        "street": "1234 Elm Street",
+        "city": "Springfield",
+        "state": "Illinois",
+        "zipCode": "62701",
+        "country": "United States of America"
+      },
+      "size": "Small"
+    },
+    {
+      "id": 4,
+      "name": "Brown and Sons",
+      "employees": 78,
+      "industry": "Retail",
+      "contactInfo": null,
+      "address": {
+        "street": "5678 Oak Avenue",
+        "city": "Metropolis",
+        "state": "New York",
+        "zipCode": "10001",
+        "country": "United States of America"
+      },
+      "size": "Small"
+    }
+  ],
+  "pageInfo": {
+    "currentPage": 1,
+    "totalPages": 1,
+    "totalCustomers": 4
+  }
+}
