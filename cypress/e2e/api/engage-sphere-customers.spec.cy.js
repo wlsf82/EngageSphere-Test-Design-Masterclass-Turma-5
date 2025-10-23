@@ -1,26 +1,35 @@
-const API_URL = Cypress.env('API_URL');
-describe('Get Customers', () => {
+const CUSTOMERS_API_URL = `${Cypress.env('API_URL')}/customers`
+describe('API - Get Customers', () => {
     context('Valid requests', () => {
         it('GET /customers - returns 200 and valid response structure (default parameters)', () => {
-           cy.request({
+            cy.request({
                 method: 'GET',
-                url: `${API_URL}/customers`,
-                headers: { accept: 'application/json' },
-                failOnStatusCode: false,
+                url: CUSTOMERS_API_URL,
             }).then(({ status, body }) => {
                 expect(status).to.eq(200);
-                const customers = body.customers;
-                expect(customers).to.be.an('array').and.not.be.empty;
-                customers.forEach((customer) => {
+                expect(body).to.have.property('customers').and.be.an('array').and.not.be.empty;
+                body.customers.forEach((customer) => {
                     expect(customer).to.have.all.keys(
                         'id',
                         'name',
                         'employees',
+                        'size',
                         'industry',
                         'contactInfo',
-                        'address',
-                        'size'
+                        'address'
                     );
+                    expect(customer.id).to.be.a('number');
+                    expect(customer.name).to.be.a('string');
+                    expect(customer.employees).to.be.a('number');
+                    expect(customer.size).to.be.a('string');
+                    expect(customer.industry).to.be.a('string');
+                    if (customer.contactInfo !== null) {
+                        expect(customer.contactInfo).to.be.an('object');
+                    }
+
+                    if (customer.address !== null) {
+                        expect(customer.address).to.be.an('object');
+                    }
                 });
             });
         });
@@ -28,9 +37,7 @@ describe('Get Customers', () => {
         it('GET /customers - correctly handles pagination across multiple pages', () => {
             cy.request({
                 method: 'GET',
-                url: `${API_URL}/customers`,
-                headers: { accept: 'application/json' },
-                failOnStatusCode: false,
+                url: CUSTOMERS_API_URL,
             }).then(({ status, body }) => {
                 expect(status).to.equal(200);
                 expect(body.customers).to.be.an('array').with.lengthOf(10);
@@ -39,10 +46,8 @@ describe('Get Customers', () => {
             });
             cy.request({
                 method: 'GET',
-                url: `${API_URL}/customers`,
+                url: CUSTOMERS_API_URL,
                 qs: { page: 2, limit: 10 },
-                headers: { accept: 'application/json' },
-                failOnStatusCode: false,
             }).then(({ status, body }) => {
                 expect(status).to.equal(200);
                 expect(body.customers).to.be.an('array').with.lengthOf.at.most(10);
@@ -56,10 +61,8 @@ describe('Get Customers', () => {
 
             cy.request({
                 method: 'GET',
-                url: `${API_URL}/customers`,
+                url: CUSTOMERS_API_URL,
                 qs: { limit },
-                headers: { accept: 'application/json' },
-                failOnStatusCode: false,
             }).then(({ status, body }) => {
                 expect(status).to.equal(200);
                 expect(body.customers).to.be.an('array');
@@ -73,10 +76,8 @@ describe('Get Customers', () => {
 
             cy.request({
                 method: 'GET',
-                url: `${API_URL}/customers`,
+                url: CUSTOMERS_API_URL,
                 qs: { size },
-                headers: { accept: 'application/json' },
-                failOnStatusCode: false,
             }).then(({ status, body }) => {
                 expect(status).to.equal(200);
                 expect(body.customers).to.be.an('array').not.to.be.empty;
@@ -91,10 +92,8 @@ describe('Get Customers', () => {
 
             cy.request({
                 method: 'GET',
-                url: `${API_URL}/customers`,
+                url: CUSTOMERS_API_URL,
                 qs: { industry },
-                headers: { accept: 'application/json' },
-                failOnStatusCode: false,
             }).then(({ status, body }) => {
                 expect(status).to.equal(200);
                 expect(body.customers).to.be.an('array').not.to.be.empty;
@@ -109,10 +108,8 @@ describe('Get Customers', () => {
 
             cy.request({
                 method: 'GET',
-                url: `${API_URL}/customers`,
+                url: CUSTOMERS_API_URL,
                 qs: { customerName },
-                headers: { accept: 'application/json' },
-                failOnStatusCode: false,
             }).then(({ status, body }) => {
                 expect(status).to.equal(200);
                 expect(body.customers).to.be.an('array').not.to.be.empty;
@@ -130,10 +127,8 @@ describe('Get Customers', () => {
 
             cy.request({
                 method: 'GET',
-                url: `${API_URL}/customers`,
+                url: CUSTOMERS_API_URL,
                 qs: { customerEmail },
-                headers: { accept: 'application/json' },
-                failOnStatusCode: false,
             }).then(({ status, body }) => {
                 expect(status).to.equal(200);
                 expect(body.customers).to.be.an('array').not.to.be.empty;
@@ -150,9 +145,8 @@ describe('Get Customers', () => {
         it('rejects request with invalid (negative) page value', () => {
             cy.request({
                 method: 'GET',
-                url: `${API_URL}/customers`,
+                url: CUSTOMERS_API_URL,
                 qs: { page: -1 },
-                headers: { accept: 'application/json' },
                 failOnStatusCode: false,
             }).then(({ status, body }) => {
                 expect(status).to.eq(400);
@@ -163,9 +157,8 @@ describe('Get Customers', () => {
         it('rejects request with invalid (negative) limit value', () => {
             cy.request({
                 method: 'GET',
-                url: `${API_URL}/customers`,
+                url: CUSTOMERS_API_URL,
                 qs: { limit: -1 },
-                headers: { accept: 'application/json' },
                 failOnStatusCode: false,
             }).then(({ status, body }) => {
                 expect(status).to.eq(400);
@@ -174,11 +167,10 @@ describe('Get Customers', () => {
         });
 
         it('rejects request with invalid (string) page value', () => {
-           cy.request({
+            cy.request({
                 method: 'GET',
-                url: `${API_URL}/customers`,
+                url: CUSTOMERS_API_URL,
                 qs: { page: 'namepage' },
-                headers: { accept: 'application/json' },
                 failOnStatusCode: false,
             }).then(({ status, body }) => {
                 expect(status).to.eq(400);
@@ -189,9 +181,8 @@ describe('Get Customers', () => {
         it('rejects request with invalid (boolean) limit value', () => {
             cy.request({
                 method: 'GET',
-                url: `${API_URL}/customers`,
+                url: CUSTOMERS_API_URL,
                 qs: { limit: true },
-                headers: { accept: 'application/json' },
                 failOnStatusCode: false,
             }).then(({ status, body }) => {
                 expect(status).to.eq(400);
@@ -203,9 +194,8 @@ describe('Get Customers', () => {
             const mensage = 'Unsupported size value. Supported values are All, Small, Medium, Enterprise, Large Enterprise, and Very Large Enterprise.'
             cy.request({
                 method: 'GET',
-                url: `${API_URL}/customers`,
+                url: CUSTOMERS_API_URL,
                 qs: { size: 'small' },
-                headers: { accept: 'application/json' },
                 failOnStatusCode: false,
             }).then(({ status, body }) => {
                 expect(status).to.eq(400);
@@ -217,9 +207,8 @@ describe('Get Customers', () => {
             const mensage = 'Unsupported industry value. Supported values are All, Logistics, Retail, Technology, HR, and Finance.'
             cy.request({
                 method: 'GET',
-                url: `${API_URL}/customers`,
+                url: CUSTOMERS_API_URL,
                 qs: { industry: 'QA' },
-                headers: { accept: 'application/json' },
                 failOnStatusCode: false,
             }).then(({ status, body }) => {
                 expect(status).to.eq(400);
@@ -230,9 +219,8 @@ describe('Get Customers', () => {
         it('rejects request with invalid (zero) page value', () => {
             cy.request({
                 method: 'GET',
-                url: `${API_URL}/customers`,
+                url: CUSTOMERS_API_URL,
                 qs: { page: 0 },
-                headers: { accept: 'application/json' },
                 failOnStatusCode: false,
             }).then(({ status, body }) => {
                 expect(status).to.eq(400);
@@ -243,9 +231,8 @@ describe('Get Customers', () => {
         it('rejects request with invalid (zero) limit value', () => {
             cy.request({
                 method: 'GET',
-                url: `${API_URL}/customers`,
+                url: CUSTOMERS_API_URL,
                 qs: { limit: 0 },
-                headers: { accept: 'application/json' },
                 failOnStatusCode: false,
             }).then(({ status, body }) => {
                 expect(status).to.eq(400);
